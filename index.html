@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- ==========================================================================
+     DERMATIC — landing page institucional
+     Domínio de produção: https://dermatic.com.br  [PREENCHER se for outro]
+     Troque o domínio aqui (canonical, hreflang, OG, JSON-LD) e no sitemap.xml.
+     ========================================================================== -->
+
+<title>Dermatic — a IA que analisa sua pele e monta a rotina certa</title>
+<meta name="description" content="Responda 9 perguntas e a Dermatic monta uma rotina de skincare personalizada: os ativos certos, na ordem certa, com o que procurar no rótulo. Grátis, sem cadastro.">
+<link rel="canonical" href="https://dermatic.com.br/">
+<link rel="alternate" hreflang="pt-BR" href="https://dermatic.com.br/">
+<link rel="alternate" hreflang="en" href="https://dermatic.com.br/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://dermatic.com.br/">
+<meta name="theme-color" content="#F7FAFC">
+
+<!-- Open Graph — compartilhamento no Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dermatic">
+<meta property="og:url" content="https://dermatic.com.br/">
+<meta property="og:title" content="Dermatic — sua pele, decodificada.">
+<meta property="og:description" content="A IA da Dermatic analisa sua pele e monta uma rotina de skincare personalizada — os produtos certos, na ordem certa, para o seu tipo de pele.">
+<meta property="og:image" content="https://dermatic.com.br/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dermatic — Sua pele, decodificada.">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dermatic — sua pele, decodificada.">
+<meta name="twitter:description" content="A IA da Dermatic analisa sua pele e monta uma rotina de skincare personalizada — os produtos certos, na ordem certa.">
+<meta name="twitter:image" content="https://dermatic.com.br/og-image.jpg">
+<meta name="twitter:image:alt" content="Dermatic — Sua pele, decodificada.">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preload" href="assets/fonts/general-sans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Dermatic",
+  "url":"https://dermatic.com.br/",
+  "logo":"https://dermatic.com.br/assets/logo/orb-512.png",
+  "slogan":"Sua pele, decodificada.",
+  "description":"Inteligência artificial que analisa a pele e monta uma rotina de skincare personalizada com produtos cosméticos e de venda livre.",
+  "email":"contato@dermatic.com.br",
+  "sameAs":["https://www.facebook.com/PREENCHER"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#quiz" data-i18n="skip">Ir direto para a análise</a>
+
+<!-- ==========================================================================
+     AVISO SUPERIOR — limite clínico sempre visível (Brand Guide p.36)
+     ========================================================================== -->
+<div class="topbar">
+  <b data-i18n="topbar.strong">Análise gratuita, resultado na hora.</b>
+  <span data-i18n="topbar.text">A Dermatic orienta cuidados cosméticos. Não faz diagnóstico e não substitui consulta com dermatologista.</span>
+</div>
+
+<!-- ========================================================================== HEADER ========== -->
+<header class="header" id="header">
+  <div class="wrap header-in">
+    <a class="brand" href="#top" aria-label="Dermatic — página inicial">
+      <img class="orb" src="assets/logo/orb-mark.png" width="34" height="34" alt="" aria-hidden="true">
+      <img class="wordmark" src="assets/logo/wordmark.png" width="104" height="21" alt="Dermatic">
+    </a>
+    <nav class="nav" aria-label="Seções da página">
+      <a href="#como-funciona" data-i18n="nav.how">Como funciona</a>
+      <a href="#analise" data-i18n="nav.what">O que entra na conta</a>
+      <a href="#limites" data-i18n="nav.limits">Limites</a>
+      <a href="#duvidas" data-i18n="nav.faq">Dúvidas</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-primary btn-sm btn-header" href="#quiz" data-i18n="cta.analyze">Analisar minha pele</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ======================================================================== HERO ========== -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="hero.eyebrow">Inteligência aplicada à sua pele</span>
+        <h1 class="h-display">Sua pele,<br><em>decodificada.</em></h1>
+        <p class="lead" data-i18n="hero.lead">Nove perguntas. A Dermatic cruza suas respostas com o que a dermatologia já sabe sobre cada ativo e devolve a rotina da manhã, a da noite e o que procurar no rótulo de cada produto.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#quiz" data-i18n="cta.analyze">Analisar minha pele</a>
+          <a class="btn btn-ghost" href="#como-funciona" data-i18n="cta.how">Ver como funciona</a>
+        </div>
+        <ul class="hero-seals">
+          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="hero.seal1">Sem cadastro</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="hero.seal2">Sem e-mail</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="hero.seal3">Suas respostas não saem do seu aparelho</span></li>
+        </ul>
+      </div>
+
+      <!-- visual: pele real dentro de um disco de vidro, com anéis de leitura -->
+      <div class="scan reveal" aria-hidden="true">
+        <svg class="scan-rings" viewBox="0 0 400 400" fill="none" stroke="currentColor">
+          <circle cx="200" cy="200" r="196" stroke-width="1" opacity=".5"/>
+          <circle cx="200" cy="200" r="172" stroke-width="1" opacity=".35" stroke-dasharray="2 8"/>
+          <circle cx="200" cy="200" r="150" stroke-width="1" opacity=".25"/>
+          <path d="M200 4v40M200 356v40M4 200h40M356 200h40" stroke-width="1" opacity=".45"/>
+        </svg>
+        <div class="scan-photo">
+          <img src="assets/img/hero-skin.jpg" width="620" height="620" alt="" fetchpriority="high" decoding="async">
+        </div>
+        <div class="scan-chip scan-chip--1"><span class="dot"></span><span data-i18n="hero.chip1">Tipo de pele</span> <b data-i18n="hero.chip1v">mista</b></div>
+        <div class="scan-chip scan-chip--2"><span class="dot"></span><span data-i18n="hero.chip2">Sensibilidade</span> <b data-i18n="hero.chip2v">moderada</b></div>
+        <div class="scan-chip scan-chip--3"><span class="dot"></span><span data-i18n="hero.chip3">Fotoproteção</span> <b data-i18n="hero.chip3v">irregular</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- números honestos: só o que é verdade hoje -->
+  <div class="facts">
+    <div class="wrap facts-in">
+      <div class="fact"><b>9</b><span data-i18n="facts.q">perguntas</span></div>
+      <div class="fact"><b>2</b><span data-i18n="facts.min">minutos</span></div>
+      <div class="fact"><b>17</b><span data-i18n="facts.actives">ativos mapeados</span></div>
+      <div class="fact"><b>0</b><span data-i18n="facts.brands">marcas patrocinadas</span></div>
+    </div>
+  </div>
+
+  <!-- ======================================================================== PROBLEMA ========== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="problem.eyebrow">Menos achismo. Mais ciência.</span>
+        <h2 class="h-section" data-i18n="problem.title">O problema quase nunca é o produto. É a ordem.</h2>
+        <p class="lead" data-i18n="problem.lead">A maior parte das pessoas compra o ativo certo na hora errada, na concentração errada, junto de outro que anula o primeiro — e conclui que a própria pele “não responde”.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card problem reveal">
+          <div class="icon-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3 class="h-card" data-i18n="problem.c1t">Você compra pelo vídeo</h3>
+          <p data-i18n="problem.c1d">O produto que transformou a pele de outra pessoa pode ser exatamente o que quebra a sua barreira. Tipo de pele e sensibilidade mudam a resposta ao mesmo ativo.</p>
+        </article>
+        <article class="card problem reveal">
+          <div class="icon-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3v6l-3 9a3 3 0 0 0 3 4h12a3 3 0 0 0 3-4l-3-9V3M6 3h12M4.5 15h15"/></svg></div>
+          <h3 class="h-card" data-i18n="problem.c2t">Você usa tudo junto</h3>
+          <p data-i18n="problem.c2d">Ácido e retinóide na mesma noite é a receita mais comum de ardência, descamação e desistência na terceira semana.</p>
+        </article>
+        <article class="card problem reveal">
+          <div class="icon-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+          <h3 class="h-card" data-i18n="problem.c3t">Você pula o protetor</h3>
+          <p data-i18n="problem.c3d">Sem fotoproteção diária, clareador e antissinais viram dinheiro jogado fora: o sol desfaz numa manhã o que o produto levou semanas para construir.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================== COMO FUNCIONA ========== -->
+  <section class="section section-white" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="how.eyebrow">Como funciona</span>
+        <h2 class="h-section" data-i18n="how.title">Três passos, dois minutos.</h2>
+      </div>
+      <div class="grid grid-3">
+        <article class="step reveal">
+          <span class="step-n">01</span>
+          <h3 class="h-card" data-i18n="how.s1t">Você responde</h3>
+          <p data-i18n="how.s1d">Nove perguntas sobre tipo de pele, o que mais incomoda, sensibilidade, sol, experiência com ativos e restrições. No fim há um campo livre para o que não coube nas alternativas.</p>
+        </article>
+        <article class="step reveal">
+          <span class="step-n">02</span>
+          <h3 class="h-card" data-i18n="how.s2t">A Dermatic cruza as respostas</h3>
+          <p data-i18n="how.s2d">Combina as queixas com os ativos indicados, corta o que é incompatível com a sua sensibilidade ou com gestação, e ordena o que entra primeiro na rotina.</p>
+        </article>
+        <article class="step reveal">
+          <span class="step-n">03</span>
+          <h3 class="h-card" data-i18n="how.s3t">Você recebe a rotina</h3>
+          <p data-i18n="how.s3d">Manhã e noite passo a passo, com o que procurar no rótulo de cada produto, a faixa de preço e os cuidados na introdução de cada ativo.</p>
+        </article>
+      </div>
+      <p class="note reveal">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 9v5M10 6.2v.6"/></svg>
+        <span data-i18n="how.note">A Dermatic oferece recomendações de cuidados cosméticos e produtos de venda livre. Não realiza diagnóstico, não substitui avaliação médica e não trata doenças de pele. Em caso de lesão, dor, alteração súbita ou piora, procure um dermatologista.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================================== QUIZ ========== -->
+  <section class="section" id="quiz">
+    <div class="wrap">
+      <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow" data-i18n="quiz.eyebrow">Análise gratuita</span>
+        <h2 class="h-section" data-i18n="quiz.title">Vamos ler a sua pele.</h2>
+        <p class="lead" data-i18n="quiz.lead" style="margin-left:auto;margin-right:auto">Nove perguntas rápidas. No fim você recebe a rotina da manhã, a da noite e a lista do que procurar em cada produto.</p>
+      </div>
+
+      <div class="quiz-shell reveal">
+        <div class="quiz-top">
+          <span class="mark">
+            <img src="assets/logo/orb-mark.png" width="20" height="20" alt="" aria-hidden="true">
+            <span data-i18n="quiz.mark">Análise Dermatic</span>
+          </span>
+          <span class="quiz-count" id="quizCount">1 / 9</span>
+        </div>
+        <div class="quiz-bar"><i id="quizBar"></i></div>
+        <div class="quiz-body" id="quizBody" role="group" aria-live="polite" aria-atomic="false">
+          <!-- preenchido por assets/js/main.js -->
+        </div>
+        <p class="quiz-foot" data-i18n="quiz.foot">Orientação educativa sobre cuidados cosméticos. Não é diagnóstico nem prescrição médica.</p>
+      </div>
+
+      <div class="result" id="result" tabindex="-1"><!-- resultado renderizado por JS --></div>
+    </div>
+  </section>
+
+  <!-- ======================================================================== O QUE ENTRA NA CONTA ========== -->
+  <section class="section section-ice" id="analise">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="factors.eyebrow">O que entra na conta</span>
+        <h2 class="h-section" data-i18n="factors.title">Seis coisas mudam a recomendação.</h2>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal"><h3 class="h-card" data-i18n="factors.f1t">Tipo de pele</h3><p class="muted small" data-i18n="factors.f1d">Define a textura da limpeza e do hidratante antes de qualquer ativo entrar.</p></article>
+        <article class="card reveal"><h3 class="h-card" data-i18n="factors.f2t">Queixa principal</h3><p class="muted small" data-i18n="factors.f2d">Acne, manchas, linhas, poros, oleosidade ou ressecamento puxam ativos diferentes.</p></article>
+        <article class="card reveal"><h3 class="h-card" data-i18n="factors.f3t">Sensibilidade</h3><p class="muted small" data-i18n="factors.f3d">Pele que arde muda concentração, frequência e a ordem de introdução.</p></article>
+        <article class="card reveal"><h3 class="h-card" data-i18n="factors.f4t">Exposição solar</h3><p class="muted small" data-i18n="factors.f4d">Determina o FPS, a reaplicação e se o protetor precisa ter cor.</p></article>
+        <article class="card reveal"><h3 class="h-card" data-i18n="factors.f5t">Experiência com ativos</h3><p class="muted small" data-i18n="factors.f5d">Quem nunca usou ácido começa com um produto só, não com cinco.</p></article>
+        <article class="card reveal"><h3 class="h-card" data-i18n="factors.f6t">Restrições</h3><p class="muted small" data-i18n="factors.f6d">Gestação, rosácea diagnosticada ou isotretinoína bloqueiam ativos automaticamente.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================== LIMITES / CONFIANÇA ========== -->
+  <section class="section" id="limites">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="limits.eyebrow">Confiança também é saber o limite</span>
+        <h2 class="h-section" data-i18n="limits.title">O que a Dermatic faz — e o que ela não faz.</h2>
+      </div>
+      <div class="limits">
+        <div class="card reveal">
+          <h4 class="eyebrow" style="margin-bottom:var(--space-3)" data-i18n="limits.yes">A Dermatic faz</h4>
+          <ul>
+            <li class="yes"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="limits.y1">Organiza uma rotina diária coerente, na ordem certa de aplicação</span></li>
+            <li class="yes"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="limits.y2">Explica cada ativo: para que serve, quando usar, o que não combinar</span></li>
+            <li class="yes"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="limits.y3">Traduz rótulo — o que procurar e o que ignorar na embalagem</span></li>
+            <li class="yes"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="limits.y4">Ajusta a recomendação ao seu orçamento e à sua experiência</span></li>
+            <li class="yes"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="limits.y5">Diz com todas as letras quando o caso é de dermatologista</span></li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h4 class="eyebrow" style="margin-bottom:var(--space-3)" data-i18n="limits.no">A Dermatic não faz</h4>
+          <ul>
+            <li class="no"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg><span data-i18n="limits.n1">Não dá diagnóstico — lesão, mancha que muda ou ferida que não fecha é caso de médico</span></li>
+            <li class="no"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg><span data-i18n="limits.n2">Não prescreve medicamento nem substitui receita</span></li>
+            <li class="no"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg><span data-i18n="limits.n3">Não trata doença de pele nem promete cura</span></li>
+            <li class="no"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg><span data-i18n="limits.n4">Não vende produto e não recebe por indicação de marca</span></li>
+            <li class="no"><svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg><span data-i18n="limits.n5">Não promete prazo de resultado: pele responde em semanas, não em dias</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:var(--space-8)">
+        <span class="eyebrow" data-i18n="who.eyebrow">Para quem é</span>
+        <h2 class="h-section" data-i18n="who.title">Preocupações que a análise cobre.</h2>
+      </div>
+      <ul class="tags reveal">
+        <li class="tag" data-i18n="who.t1">Acne e cravos</li>
+        <li class="tag" data-i18n="who.t2">Oleosidade e poros</li>
+        <li class="tag" data-i18n="who.t3">Manchas e melasma</li>
+        <li class="tag" data-i18n="who.t4">Sensibilidade e barreira</li>
+        <li class="tag" data-i18n="who.t5">Textura e viço</li>
+        <li class="tag" data-i18n="who.t6">Linhas finas</li>
+        <li class="tag" data-i18n="who.t7">Olheiras</li>
+        <li class="tag" data-i18n="who.t8">Fotoproteção</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ======================================================================== FAQ ========== -->
+  <section class="section section-white" id="duvidas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="faq.eyebrow">Dúvidas</span>
+        <h2 class="h-section" data-i18n="faq.title">Perguntas frequentes.</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary data-i18n="faq.q1">A Dermatic vende os produtos que indica?</summary>
+          <p class="answer" data-i18n="faq.a1">Não. A recomendação é por ativo e concentração, não por marca. Nenhuma marca paga para aparecer, e a Dermatic não recebe comissão por indicação.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q2">Isso substitui uma consulta com dermatologista?</summary>
+          <p class="answer" data-i18n="faq.a2">Não substitui. A Dermatic trabalha com cosméticos e produtos de venda livre. Diagnóstico, prescrição e tratamento de doença de pele são do médico — e a própria análise avisa quando o seu caso pede essa consulta.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q3">O que acontece com as minhas respostas?</summary>
+          <p class="answer" data-i18n="faq.a3">Ficam no seu aparelho. A análise é calculada dentro do próprio navegador: nada é enviado para servidor, nada é guardado em banco de dados e nada é usado para treinar modelo.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q4">Preciso me cadastrar ou informar e-mail?</summary>
+          <p class="answer" data-i18n="faq.a4">Não. Sem cadastro, sem e-mail, sem senha. Você responde e o resultado aparece na hora.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q5">Posso usar se estiver grávida ou amamentando?</summary>
+          <p class="answer" data-i18n="faq.a5">Pode, e existe uma pergunta específica sobre isso. Ao marcar gestação ou amamentação, a análise já sai sem retinóides e sem os ativos contraindicados. Ainda assim, confirme a rotina com quem acompanha o seu pré-natal.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q6">Em quanto tempo eu vejo resultado?</summary>
+          <p class="answer" data-i18n="faq.a6">Depende do ativo e da sua pele, e ninguém honesto promete prazo. A maior parte dos ativos cosméticos pede semanas de uso constante — não dias. Constância vale mais que concentração.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q7">Posso refazer a análise depois?</summary>
+          <p class="answer" data-i18n="faq.a7">Quantas vezes quiser. A pele muda com estação, rotina e idade — refazer quando algo mudar é justamente o uso certo.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q8">O aplicativo já está disponível?</summary>
+          <p class="answer" data-i18n="faq.a8">Ainda não. A Dermatic está em desenvolvimento, e esta análise é a primeira parte dela funcionando de forma aberta. Para acompanhar o lançamento, fale com a gente no WhatsApp ou siga a página no Facebook.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================== CTA FINAL ========== -->
+  <section class="section cta-final">
+    <span class="orb-deco" aria-hidden="true"></span>
+    <div class="wrap">
+      <h2 class="h-section reveal" data-i18n="final.title">Duas perguntas você já respondeu lendo até aqui.</h2>
+      <p class="reveal" data-i18n="final.lead">Faltam nove. No fim você sai com uma rotina de manhã, uma de noite e a lista do que procurar em cada produto. Se preferir conversar antes, é só chamar no WhatsApp.</p>
+      <div class="btns reveal">
+        <a class="btn btn-primary" href="#quiz" data-i18n="cta.analyze">Analisar minha pele</a>
+        <a class="btn btn-ghost" href="#" data-wa data-i18n="cta.whats">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======================================================================== RODAPÉ ========== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">
+          <img class="orb" src="assets/logo/orb-mark.png" width="40" height="40" alt="" aria-hidden="true">
+          <img class="wordmark" src="assets/logo/wordmark.png" width="124" height="24" alt="Dermatic">
+        </div>
+        <p class="muted small" style="max-width:38ch" data-i18n="footer.bio">A Dermatic usa IA para analisar sua pele e montar uma rotina de skincare personalizada — produtos certos, na ordem certa, para o seu tipo de pele.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/PREENCHER" target="_blank" rel="noopener" aria-label="Facebook" data-social="facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>
+          </a>
+          <a href="#" data-wa target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1 1.9-.6 3a9.4 9.4 0 0 0 4.4 4.6c1.3.6 2.3.6 3 .4.5-.1 1.3-.6 1.5-1.2.2-.5.2-1 .1-1.1z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="footer.nav">Navegação</h4>
+        <ul>
+          <li><a href="#quiz" data-i18n="cta.analyze">Analisar minha pele</a></li>
+          <li><a href="#como-funciona" data-i18n="nav.how">Como funciona</a></li>
+          <li><a href="#analise" data-i18n="nav.what">O que entra na conta</a></li>
+          <li><a href="#duvidas" data-i18n="nav.faq">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.contact">Contato e transparência</h4>
+        <ul>
+          <li><a href="mailto:contato@dermatic.com.br" data-email>contato@dermatic.com.br</a></li>
+          <li><a href="https://www.facebook.com/PREENCHER" target="_blank" rel="noopener" data-social="facebook">Facebook</a></li>
+          <li><a href="privacidade.html" data-i18n="footer.privacy">Política de privacidade</a></li>
+          <li><a href="termos.html" data-i18n="footer.terms">Termos de uso</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p data-i18n="footer.disclaimer"><strong>Aviso médico.</strong> A Dermatic oferece recomendações de cuidados cosméticos e produtos de venda livre. Não realiza diagnóstico, não substitui avaliação médica e não trata doenças de pele. Em caso de lesão, dor, alteração súbita ou piora, procure um dermatologista.</p>
+      <div class="row">
+        <p><span id="year">2026</span> Dermatic<sup>®</sup> — <span data-i18n="footer.tagline">Sua pele, decodificada.</span></p>
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="#" data-wa target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1 1.9-.6 3a9.4 9.4 0 0 0 4.4 4.6c1.3.6 2.3.6 3 .4.5-.1 1.3-.6 1.5-1.2.2-.5.2-1 .1-1.1z"/></svg>
+</a>
+
+<!-- banner de consentimento — só aparece se houver Pixel/Analytics configurado -->
+<div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Consentimento de cookies">
+  <p data-i18n="consent.text">Usamos cookies de medição para entender de onde vêm as visitas. Nada é carregado antes de você aceitar.</p>
+  <div class="btns">
+    <button type="button" class="btn btn-ghost btn-sm" id="consentNo" data-i18n="consent.no">Recusar</button>
+    <button type="button" class="btn btn-primary btn-sm" id="consentYes" data-i18n="consent.yes">Aceitar</button>
+  </div>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

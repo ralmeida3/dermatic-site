@@ -1,0 +1,12 @@
+General Sans — Indian Type Foundry (Fontshare)
+ITF Free Font License. Uso pessoal e comercial permitido.
+https://www.fontshare.com/fonts/general-sans
+
+Inter — Rasmus Andersson
+SIL Open Font License 1.1
+https://rsms.me/inter/
+
+Nota: o brand guide define Neue Montreal como fonte de display. Ela é
+comercial (Pangram Pangram). General Sans é o substituto livre usado aqui.
+Para trocar: coloque os .woff2 da Neue Montreal nesta pasta e ajuste os
+@font-face no topo de assets/css/styles.css.
