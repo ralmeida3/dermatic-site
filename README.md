@@ -21,7 +21,9 @@ const CONFIG = {
   tiktok: "",                                     // opcional
   email: "contato@dermatic.com.br",
   site: "https://dermatic.com.br",                // domínio final
-  pixelId: ""                                     // Meta Pixel; vazio = sem rastreamento e sem banner
+  pixelId: "",                                    // Meta Pixel; vazio = sem rastreamento e sem banner
+  leadEndpoint: "",                               // para onde vai o contato do fim da análise
+  sendAnswers: false                              // enviar junto as respostas do quiz? (leia a seção 3)
 };
 ```
 
@@ -58,7 +60,44 @@ depoimento ou parceria que não exista. A página não inventa prova social.
 
 ---
 
-## 3. Como funciona a análise
+## 3. O contato no fim da análise (CRM)
+
+Antes de mostrar a rotina, a última tela pede **nome, e-mail e WhatsApp (opcional)**, com um
+aceite obrigatório para contato. Só depois de preencher é que o resultado aparece.
+
+Para o contato chegar em algum lugar, preencha `CONFIG.leadEndpoint` com uma URL que aceite
+`POST` em JSON. Enquanto estiver vazio, **nada é enviado** — a pessoa preenche e vê a rotina,
+mas o dado não vai para lugar nenhum.
+
+Caminho mais rápido: crie um formulário no [Formspree](https://formspree.io), copie a URL
+(`https://formspree.io/f/xxxxxxx`) e cole em `leadEndpoint`. Funciona igual com Netlify Forms,
+Make, Zapier, n8n ou o webhook do seu CRM.
+
+O que é enviado:
+
+```json
+{
+  "nome": "...", "email": "...", "whatsapp": "...",
+  "aceite": true, "idioma": "pt",
+  "origem": "utm_source=facebook&utm_campaign=...", "pagina": "https://...",
+  "rotina": "Uma rotina para controlar cravos e espinhas",
+  "momento": "2026-09-05T22:10:00.000Z"
+}
+```
+
+Repare que **as respostas do questionário não vão junto**. Isso é proposital: queixa de pele é
+dado de saúde e, pela LGPD (art. 5º, II) e pelo GDPR (art. 9), dado pessoal sensível — exige
+consentimento específico e destacado, não o aceite genérico que está no formulário hoje.
+Se você quiser esses dados no CRM, ligue `sendAnswers: true` **depois** de ajustar o texto do
+aceite e a política de privacidade com apoio jurídico.
+
+Se o envio falhar (rede caiu, endpoint fora do ar), a pessoa vê a rotina do mesmo jeito — o
+resultado nunca fica preso a uma requisição.
+
+Para tornar o passo opcional (mostrar a rotina mesmo sem contato), basta trocar a chamada de
+`renderLead()` por `finish()` no fim da função `next()`, em `assets/js/main.js`.
+
+## 4. Como funciona a análise
 
 `analyze()` (seção 5 do `main.js`) é um motor de regras, não um modelo de IA. Ele:
 
@@ -78,7 +117,7 @@ Para acrescentar um ativo: adicione uma entrada em `CATALOG` e cite a chave dent
 
 ---
 
-## 4. Estrutura
+## 5. Estrutura
 
 ```
 /
@@ -100,7 +139,7 @@ Para acrescentar um ativo: adicione uma entrada em `CATALOG` e cite a chave dent
 
 ---
 
-## 5. Publicar
+## 6. Publicar
 
 **Vercel ou Netlify:** arraste a pasta, ou conecte o repositório. Não há build — o comando de
 build fica vazio e o diretório de saída é a raiz.
@@ -119,7 +158,7 @@ Depois abra `http://localhost:8080`.
 
 ---
 
-## 6. Fontes
+## 7. Fontes
 
 O brand guide define **Neue Montreal** no display, que é uma fonte comercial da Pangram Pangram.
 No lugar dela usamos **General Sans** (Fontshare, licença livre), que é a grotesca livre mais
@@ -132,26 +171,33 @@ Licenças em `assets/fonts/LICENSES.txt`.
 
 ---
 
-## 7. Imagens
+## 8. Imagens
 
-As imagens saíram do próprio brand guide (foto do hero, orbe, assinatura) e a `og-image.jpg`
-foi montada com a paleta e a tipografia oficiais.
+O visual do hero — o disco de pele com a lente de leitura, os anéis e os chips — é feito
+inteiramente em CSS e SVG: não há foto, nada para otimizar e ele reage ao ponteiro (o disco
+inclina, a lente segue o cursor, as marcas acendem sob a lente e os chips deslocam em
+profundidades diferentes). Sem mouse, ou com "reduzir movimento" ligado no sistema, a lente
+apenas deriva devagar. Para mudar as marcas na pele, edite os `<span class="skin-mark">` no
+`index.html` — cada um tem `--x` e `--y` em porcentagem.
 
-Este Mac não tinha codificador WebP disponível, então as fotos estão em JPEG otimizado e os
-logos em PNG. Se quiser converter depois:
+O orbe e a assinatura saíram do brand guide, e a `og-image.jpg` foi montada com a paleta e a
+tipografia oficiais.
+
+Este Mac não tinha codificador WebP disponível, então os logos e ícones estão em PNG e a
+`og-image` em JPEG. Se quiser converter depois:
 
 ```bash
-brew install webp && cwebp -q 82 assets/img/hero-skin.jpg -o assets/img/hero-skin.webp
+brew install webp && cwebp -q 82 assets/logo/wordmark.png -o assets/logo/wordmark.webp
 ```
-
-Depois troque o `src` no `index.html` — ou use `<picture>` com os dois formatos.
 
 ---
 
-## 8. Pendências que dependem de decisão sua
+## 9. Pendências que dependem de decisão sua
 
 - [ ] Número do WhatsApp, URL do Facebook, e-mail de contato e domínio final
 - [ ] Meta Pixel ID, se quiser medir origem das visitas (sem ele, o banner de cookies nem aparece)
+- [ ] `leadEndpoint`: para onde o contato do fim da análise deve ir (Formspree, CRM, automação)
+- [ ] Decidir, com apoio jurídico, se as respostas do quiz vão junto do contato (`sendAnswers`)
 - [ ] Revisão jurídica de `privacidade.html` e `termos.html` — os pontos estão marcados com
       `<!-- TODO: revisão jurídica -->` e `[PREENCHER]`: razão social, CNPJ, endereço, encarregado
       de dados, operadores contratados, prazos de retenção e foro

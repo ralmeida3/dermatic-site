@@ -106,27 +106,35 @@
           <a class="btn btn-primary" href="#quiz" data-i18n="cta.analyze">Analisar minha pele</a>
           <a class="btn btn-ghost" href="#como-funciona" data-i18n="cta.how">Ver como funciona</a>
         </div>
-        <ul class="hero-seals">
-          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="hero.seal1">Sem cadastro</span></li>
-          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="hero.seal2">Sem e-mail</span></li>
-          <li><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5"/></svg><span data-i18n="hero.seal3">Suas respostas não saem do seu aparelho</span></li>
-        </ul>
       </div>
 
-      <!-- visual: pele real dentro de um disco de vidro, com anéis de leitura -->
-      <div class="scan reveal" aria-hidden="true">
-        <svg class="scan-rings" viewBox="0 0 400 400" fill="none" stroke="currentColor">
-          <circle cx="200" cy="200" r="196" stroke-width="1" opacity=".5"/>
-          <circle cx="200" cy="200" r="172" stroke-width="1" opacity=".35" stroke-dasharray="2 8"/>
-          <circle cx="200" cy="200" r="150" stroke-width="1" opacity=".25"/>
-          <path d="M200 4v40M200 356v40M4 200h40M356 200h40" stroke-width="1" opacity=".45"/>
-        </svg>
-        <div class="scan-photo">
-          <img src="assets/img/hero-skin.jpg" width="620" height="620" alt="" fetchpriority="high" decoding="async">
+      <!-- visual: amostra de pele sob leitura — construído em CSS/SVG, reage ao ponteiro -->
+      <div class="scan reveal" id="scan">
+        <div class="scan-stage">
+          <svg class="scan-rings" viewBox="0 0 400 400" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="200" cy="200" r="196" stroke-width="1" opacity=".45"/>
+            <circle cx="200" cy="200" r="178" stroke-width="1" opacity=".3" stroke-dasharray="1.5 7"/>
+            <circle cx="200" cy="200" r="150" stroke-width="1" opacity=".22"/>
+            <path d="M200 6v34M200 360v34M6 200h34M360 200h34" stroke-width="1" opacity=".4"/>
+            <path d="M148 148 132 132M252 148l16-16M148 252l-16 16M252 252l16 16" stroke-width="1" opacity=".25"/>
+          </svg>
+
+          <div class="skin" id="skin">
+            <span class="skin-sheen" aria-hidden="true"></span>
+            <span class="skin-mark" style="--x:31%;--y:26%"></span>
+            <span class="skin-mark" style="--x:63%;--y:19%"></span>
+            <span class="skin-mark" style="--x:74%;--y:52%"></span>
+            <span class="skin-mark" style="--x:22%;--y:61%"></span>
+            <span class="skin-mark" style="--x:47%;--y:74%"></span>
+            <span class="skin-mark" style="--x:57%;--y:44%"></span>
+            <span class="skin-lens" id="lens" aria-hidden="true"><i></i></span>
+          </div>
         </div>
-        <div class="scan-chip scan-chip--1"><span class="dot"></span><span data-i18n="hero.chip1">Tipo de pele</span> <b data-i18n="hero.chip1v">mista</b></div>
-        <div class="scan-chip scan-chip--2"><span class="dot"></span><span data-i18n="hero.chip2">Sensibilidade</span> <b data-i18n="hero.chip2v">moderada</b></div>
-        <div class="scan-chip scan-chip--3"><span class="dot"></span><span data-i18n="hero.chip3">Fotoproteção</span> <b data-i18n="hero.chip3v">irregular</b></div>
+
+        <p class="sr-only" data-i18n="hero.scanAlt">Ilustração de uma amostra de pele sob leitura, com tipo de pele mista, sensibilidade moderada e fotoproteção irregular.</p>
+        <div class="scan-chip scan-chip--1" data-depth="14" aria-hidden="true"><span class="dot"></span><span data-i18n="hero.chip1">Tipo de pele</span> <b data-i18n="hero.chip1v">mista</b></div>
+        <div class="scan-chip scan-chip--2" data-depth="22" aria-hidden="true"><span class="dot"></span><span data-i18n="hero.chip2">Sensibilidade</span> <b data-i18n="hero.chip2v">moderada</b></div>
+        <div class="scan-chip scan-chip--3" data-depth="18" aria-hidden="true"><span class="dot"></span><span data-i18n="hero.chip3">Fotoproteção</span> <b data-i18n="hero.chip3v">irregular</b></div>
       </div>
     </div>
   </section>
@@ -311,11 +319,11 @@
         </details>
         <details>
           <summary data-i18n="faq.q3">O que acontece com as minhas respostas?</summary>
-          <p class="answer" data-i18n="faq.a3">Ficam no seu aparelho. A análise é calculada dentro do próprio navegador: nada é enviado para servidor, nada é guardado em banco de dados e nada é usado para treinar modelo.</p>
+          <p class="answer" data-i18n="faq.a3">A análise é calculada dentro do próprio navegador — as respostas sobre a sua pele não são enviadas para servidor nem usadas para treinar modelo. O que sai daqui é apenas o contato que você digita no fim, e só para a Dermatic falar com você.</p>
         </details>
         <details>
-          <summary data-i18n="faq.q4">Preciso me cadastrar ou informar e-mail?</summary>
-          <p class="answer" data-i18n="faq.a4">Não. Sem cadastro, sem e-mail, sem senha. Você responde e o resultado aparece na hora.</p>
+          <summary data-i18n="faq.q4">Preciso informar meus dados?</summary>
+          <p class="answer" data-i18n="faq.a4">Nome e e-mail, no último passo, para a gente enviar a sua rotina e poder responder suas dúvidas. Não pedimos senha, não criamos conta e você pode pedir a exclusão dos seus dados quando quiser.</p>
         </details>
         <details>
           <summary data-i18n="faq.q5">Posso usar se estiver grávida ou amamentando?</summary>

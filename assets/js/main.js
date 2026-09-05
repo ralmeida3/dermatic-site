@@ -24,7 +24,18 @@ const CONFIG = {
   tiktok: "",                                      /* [PREENCHER] ou deixe vazio */
   email: "contato@dermatic.com.br",                /* [PREENCHER] */
   site: "https://dermatic.com.br",                 /* [PREENCHER] domínio final */
-  pixelId: ""                                      /* [PREENCHER] Meta Pixel; vazio = sem rastreamento */
+  pixelId: "",                                     /* [PREENCHER] Meta Pixel; vazio = sem rastreamento */
+
+  /* Para onde vai o contato preenchido no fim da análise.
+     Aceita qualquer endpoint que receba POST em JSON — Formspree, Netlify Forms,
+     Make, Zapier, n8n ou o webhook do seu CRM. Vazio = nada é enviado. */
+  leadEndpoint: "",                                /* [PREENCHER] ex.: https://formspree.io/f/xxxxxxx */
+
+  /* Enviar junto as respostas do questionário?
+     Fica FALSE de propósito: queixa de pele é dado de saúde e, pela LGPD, dado
+     pessoal sensível — exige consentimento específico e destacado. Só ligue
+     depois de tratar isso com o jurídico e de ajustar o texto do aceite. */
+  sendAnswers: false
 };
 
 /* Mensagem que já vai digitada no WhatsApp */
@@ -46,7 +57,7 @@ const I18N = {
     "hero.eyebrow":"Inteligência aplicada à sua pele",
     "hero.h1":"Sua pele,<br><em>decodificada.</em>",
     "hero.lead":"Nove perguntas. A Dermatic cruza suas respostas com o que a dermatologia já sabe sobre cada ativo e devolve a rotina da manhã, a da noite e o que procurar no rótulo de cada produto.",
-    "hero.seal1":"Sem cadastro","hero.seal2":"Sem e-mail","hero.seal3":"Suas respostas não saem do seu aparelho",
+    "hero.scanAlt":"Ilustração de uma amostra de pele sob leitura, com tipo de pele mista, sensibilidade moderada e fotoproteção irregular.",
     "hero.chip1":"Tipo de pele","hero.chip1v":"mista","hero.chip2":"Sensibilidade","hero.chip2v":"moderada",
     "hero.chip3":"Fotoproteção","hero.chip3v":"irregular",
     "facts.q":"perguntas","facts.min":"minutos","facts.actives":"ativos mapeados","facts.brands":"marcas patrocinadas",
@@ -71,8 +82,7 @@ const I18N = {
     "quiz.lead":"Nove perguntas rápidas. No fim você recebe a rotina da manhã, a da noite e a lista do que procurar em cada produto.",
     "quiz.mark":"Análise Dermatic",
     "quiz.foot":"Orientação educativa sobre cuidados cosméticos. Não é diagnóstico nem prescrição médica.",
-    "quiz.continue":"Continuar","quiz.finish":"Ver minha rotina","quiz.back":"Voltar","quiz.skip":"Pular",
-    "quiz.optional":"Opcional",
+    "quiz.continue":"Continuar","quiz.finish":"Ver minha rotina","quiz.back":"Voltar",
     "quiz.thinking":"Cruzando suas respostas com os ativos indicados e cortando o que não combina com o seu caso…",
     "quiz.max":"Você já escolheu 3. Desmarque uma para trocar.",
     "factors.eyebrow":"O que entra na conta","factors.title":"Seis coisas mudam a recomendação.",
@@ -103,9 +113,9 @@ const I18N = {
     "faq.q2":"Isso substitui uma consulta com dermatologista?",
     "faq.a2":"Não substitui. A Dermatic trabalha com cosméticos e produtos de venda livre. Diagnóstico, prescrição e tratamento de doença de pele são do médico — e a própria análise avisa quando o seu caso pede essa consulta.",
     "faq.q3":"O que acontece com as minhas respostas?",
-    "faq.a3":"Ficam no seu aparelho. A análise é calculada dentro do próprio navegador: nada é enviado para servidor, nada é guardado em banco de dados e nada é usado para treinar modelo.",
-    "faq.q4":"Preciso me cadastrar ou informar e-mail?",
-    "faq.a4":"Não. Sem cadastro, sem e-mail, sem senha. Você responde e o resultado aparece na hora.",
+    "faq.a3":"A análise é calculada dentro do próprio navegador — as respostas sobre a sua pele não são enviadas para servidor nem usadas para treinar modelo. O que sai daqui é apenas o contato que você digita no fim, e só para a Dermatic falar com você.",
+    "faq.q4":"Preciso informar meus dados?",
+    "faq.a4":"Nome e e-mail, no último passo, para a gente enviar a sua rotina e poder responder suas dúvidas. Não pedimos senha, não criamos conta e você pode pedir a exclusão dos seus dados quando quiser.",
     "faq.q5":"Posso usar se estiver grávida ou amamentando?",
     "faq.a5":"Pode, e existe uma pergunta específica sobre isso. Ao marcar gestação ou amamentação, a análise já sai sem retinóides e sem os ativos contraindicados. Ainda assim, confirme a rotina com quem acompanha o seu pré-natal.",
     "faq.q6":"Em quanto tempo eu vejo resultado?",
@@ -130,7 +140,21 @@ const I18N = {
     "res.active":"Ativo","res.label":"O que procurar no rótulo","res.when":"Quando usar",
     "res.ctaTitle":"Ficou com dúvida na rotina?",
     "res.ctaText":"Manda a sua dúvida no WhatsApp. A gente responde e você acompanha o lançamento da Dermatic por lá.",
-    "res.print":"Salvar em PDF"
+    /* passo de contato */
+    "lead.step":"Último passo",
+    "lead.title":"Para onde enviamos a sua rotina?",
+    "lead.help":"Sua análise já está pronta. Deixe seu contato para receber a rotina e poder tirar dúvidas com a gente.",
+    "lead.name":"Seu nome",
+    "lead.email":"Seu e-mail",
+    "lead.phone":"WhatsApp",
+    "lead.optional":"(opcional)",
+    "lead.consent":"Aceito receber a minha rotina e conteúdos da Dermatic por e-mail ou WhatsApp. Posso cancelar quando quiser.",
+    "lead.privacy":"Política de privacidade",
+    "lead.submit":"Ver minha rotina",
+    "lead.note":"Não pedimos senha e não criamos conta. Você pode pedir a exclusão dos seus dados quando quiser.",
+    "lead.errName":"Escreva o seu nome.",
+    "lead.errEmail":"Escreva um e-mail válido.",
+    "lead.errConsent":"Marque a autorização para continuar."
   },
   en: {
     "skip":"Skip to the analysis",
@@ -141,7 +165,7 @@ const I18N = {
     "hero.eyebrow":"Intelligence applied to your skin",
     "hero.h1":"Your skin,<br><em>decoded.</em>",
     "hero.lead":"Nine questions. Dermatic matches your answers with what dermatology already knows about each active and gives you a morning routine, a night routine and what to look for on every label.",
-    "hero.seal1":"No sign-up","hero.seal2":"No email","hero.seal3":"Your answers never leave your device",
+    "hero.scanAlt":"Illustration of a skin sample being read, showing combination skin type, moderate sensitivity and inconsistent sun protection.",
     "hero.chip1":"Skin type","hero.chip1v":"combination","hero.chip2":"Sensitivity","hero.chip2v":"moderate",
     "hero.chip3":"Sun protection","hero.chip3v":"inconsistent",
     "facts.q":"questions","facts.min":"minutes","facts.actives":"actives mapped","facts.brands":"sponsored brands",
@@ -166,8 +190,7 @@ const I18N = {
     "quiz.lead":"Nine quick questions. At the end you get a morning routine, a night routine and the list of what to look for in each product.",
     "quiz.mark":"Dermatic analysis",
     "quiz.foot":"Educational guidance on cosmetic skincare. Not a diagnosis or a medical prescription.",
-    "quiz.continue":"Continue","quiz.finish":"See my routine","quiz.back":"Back","quiz.skip":"Skip",
-    "quiz.optional":"Optional",
+    "quiz.continue":"Continue","quiz.finish":"See my routine","quiz.back":"Back",
     "quiz.thinking":"Matching your answers with the indicated actives and removing what doesn't fit your case…",
     "quiz.max":"You already picked 3. Unselect one to change.",
     "factors.eyebrow":"What counts","factors.title":"Six things change the recommendation.",
@@ -198,9 +221,9 @@ const I18N = {
     "faq.q2":"Does this replace a dermatologist?",
     "faq.a2":"It does not. Dermatic works with cosmetics and over-the-counter products. Diagnosis, prescription and treatment of skin disease belong to a doctor — and the analysis itself tells you when your case calls for that visit.",
     "faq.q3":"What happens to my answers?",
-    "faq.a3":"They stay on your device. The analysis runs inside your own browser: nothing is sent to a server, nothing is stored in a database and nothing is used to train a model.",
-    "faq.q4":"Do I need an account or an email?",
-    "faq.a4":"No. No sign-up, no email, no password. You answer and the result appears right away.",
+    "faq.a3":"The analysis runs inside your own browser — your answers about your skin are never sent to a server or used to train a model. The only thing that leaves this page is the contact you type at the end, and only so Dermatic can talk to you.",
+    "faq.q4":"Do I have to give my details?",
+    "faq.a4":"Name and email, on the last step, so we can send your routine and answer your questions. No password, no account, and you can ask us to delete your data whenever you want.",
     "faq.q5":"Can I use it while pregnant or breastfeeding?",
     "faq.a5":"Yes, and there's a specific question about it. If you mark pregnancy or breastfeeding, the analysis comes out without retinoids and without the contraindicated actives. Still, confirm the routine with the professional following your prenatal care.",
     "faq.q6":"How long until I see results?",
@@ -224,7 +247,20 @@ const I18N = {
     "res.active":"Active","res.label":"What to look for on the label","res.when":"When to use",
     "res.ctaTitle":"Stuck on the routine?",
     "res.ctaText":"Send your question on WhatsApp. We answer there — and that's where you follow the Dermatic launch.",
-    "res.print":"Save as PDF"
+    "lead.step":"Last step",
+    "lead.title":"Where should we send your routine?",
+    "lead.help":"Your analysis is ready. Leave your contact so we can send the routine and answer your questions.",
+    "lead.name":"Your name",
+    "lead.email":"Your email",
+    "lead.phone":"WhatsApp",
+    "lead.optional":"(optional)",
+    "lead.consent":"I agree to receive my routine and Dermatic content by email or WhatsApp. I can unsubscribe at any time.",
+    "lead.privacy":"Privacy policy",
+    "lead.submit":"See my routine",
+    "lead.note":"No password, no account. You can ask us to delete your data at any time.",
+    "lead.errName":"Please enter your name.",
+    "lead.errEmail":"Please enter a valid email.",
+    "lead.errConsent":"Please tick the authorisation to continue."
   }
 };
 
@@ -597,7 +633,9 @@ function analyze(a){
    6. QUIZ
    ========================================================================== */
 const answers = {};
+const lead = {};
 let step = 0;
+let onLead = false;   /* true enquanto o passo de contato está na tela */
 const qBody = document.getElementById("quizBody");
 const qCount = document.getElementById("quizCount");
 const qBar = document.getElementById("quizBar");
@@ -704,7 +742,105 @@ function next(){
   if(Q.kind === "many" && (!answers[Q.id] || !answers[Q.id].length)) return;
 
   if(step < QUESTIONS.length - 1){ step++; renderStep(); }
-  else finish();
+  else renderLead();
+}
+
+/* ==========================================================================
+   6b. PASSO DE CONTATO — a rotina aparece depois que a pessoa se identifica
+   ========================================================================== */
+function renderLead(){
+  onLead = true;
+  qCount.textContent = t("lead.step");
+  qBar.style.width = "96%";
+
+  const campo = (id, label, type, opt) =>
+    '<div class="field" id="f-' + id + '">' +
+      '<label for="lead-' + id + '">' + esc(label) + (opt ? ' <span>' + esc(t("lead.optional")) + "</span>" : "") + "</label>" +
+      '<input id="lead-' + id + '" name="' + id + '" type="' + type + '" ' +
+        'autocomplete="' + (id === "name" ? "name" : id === "email" ? "email" : "tel") + '" ' +
+        (opt ? "" : 'required aria-required="true" ') +
+        'aria-describedby="e-' + id + '" value="' + esc(lead[id] || "") + '">' +
+      '<p class="err" id="e-' + id + '" role="alert"></p></div>';
+
+  qBody.innerHTML =
+    '<h3 class="quiz-q">' + esc(t("lead.title")) + "</h3>" +
+    '<p class="quiz-help">' + esc(t("lead.help")) + "</p>" +
+    '<form class="lead" id="leadForm" novalidate>' +
+      '<div class="row-2">' + campo("name", t("lead.name"), "text") + campo("email", t("lead.email"), "email") + "</div>" +
+      campo("phone", t("lead.phone"), "tel", true) +
+      '<div class="field" id="f-consent">' +
+        '<label class="consent-line" for="lead-consent">' +
+          '<input type="checkbox" id="lead-consent"' + (lead.consent ? " checked" : "") + ' aria-describedby="e-consent">' +
+          "<span>" + esc(t("lead.consent")) + ' <a href="privacidade.html" target="_blank" rel="noopener">' + esc(t("lead.privacy")) + "</a>.</span>" +
+        "</label><p class=\"err\" id=\"e-consent\" role=\"alert\"></p></div>" +
+      '<p class="lead-note">' + esc(t("lead.note")) + "</p>" +
+      '<div class="quiz-actions">' +
+        '<button type="button" class="quiz-back" id="leadBack">← ' + esc(t("quiz.back")) + "</button>" +
+        '<button type="submit" class="btn btn-primary">' + esc(t("lead.submit")) + "</button>" +
+      "</div></form>";
+
+  document.getElementById("leadBack").addEventListener("click", () => {
+    onLead = false; renderStep();
+  });
+  document.getElementById("leadForm").addEventListener("submit", ev => {
+    ev.preventDefault();
+    submitLead();
+  });
+  const first = document.getElementById("lead-name");
+  if(first) first.focus({preventScroll:true});
+}
+
+function markErr(id, msg){
+  const box = document.getElementById("f-" + id);
+  const input = document.getElementById("lead-" + id);
+  box.classList.toggle("is-bad", !!msg);
+  document.getElementById("e-" + id).textContent = msg || "";
+  if(input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+  return !msg;
+}
+
+function submitLead(){
+  const nome = document.getElementById("lead-name").value.trim();
+  const email = document.getElementById("lead-email").value.trim();
+  const fone = document.getElementById("lead-phone").value.trim();
+  const aceite = document.getElementById("lead-consent").checked;
+
+  const okNome = markErr("name", nome.length >= 2 ? "" : t("lead.errName"));
+  const okMail = markErr("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "" : t("lead.errEmail"));
+  const okAceite = markErr("consent", aceite ? "" : t("lead.errConsent"));
+  if(!okNome || !okMail || !okAceite){
+    const alvo = document.querySelector(".field.is-bad input");
+    if(alvo) alvo.focus();
+    return;
+  }
+
+  lead.name = nome; lead.email = email; lead.phone = fone; lead.consent = true;
+  onLead = false;
+  finish();
+}
+
+/* Envia o contato para o endpoint configurado. Nunca bloqueia o resultado:
+   se a rede falhar, a pessoa vê a rotina do mesmo jeito. */
+function sendLead(plan){
+  if(!CONFIG.leadEndpoint){
+    /* TODO: preencher CONFIG.leadEndpoint para o contato chegar em algum lugar */
+    return;
+  }
+  const payload = {
+    nome: lead.name, email: lead.email, whatsapp: lead.phone || "",
+    aceite: !!lead.consent, idioma: lang,
+    origem: UTM || "direto", pagina: location.href,
+    rotina: plan.titulo, momento: new Date().toISOString()
+  };
+  if(CONFIG.sendAnswers) payload.respostas = Object.assign({}, answers);
+  try{
+    fetch(CONFIG.leadEndpoint, {
+      method:"POST",
+      headers:{"Content-Type":"application/json", "Accept":"application/json"},
+      body: JSON.stringify(payload)
+    }).catch(()=>{});
+  }catch(e){}
+  if(window.fbq) window.fbq("track", "Lead");
 }
 
 function finish(){
@@ -712,6 +848,7 @@ function finish(){
   qCount.textContent = QUESTIONS.length + " / " + QUESTIONS.length;
   qBody.innerHTML = '<div class="thinking"><div class="dots"><i></i><i></i><i></i></div><p>' + esc(t("quiz.thinking")) + "</p></div>";
   const plan = analyze(answers);
+  sendLead(plan);
   setTimeout(() => renderResult(plan), 900);
 }
 
@@ -766,6 +903,7 @@ function renderResult(plan){
 
   document.getElementById("redo").addEventListener("click", () => {
     step = 0;
+    onLead = false;
     Object.keys(answers).forEach(k => delete answers[k]);
     resultEl.classList.remove("is-on");
     resultEl.innerHTML = "";
@@ -794,6 +932,7 @@ function applyLang(next){
   try{ localStorage.setItem("dermatic-lang", lang); }catch(e){}
   applyWhatsLinks();
   if(resultEl.classList.contains("is-on")) renderResult(analyze(answers));
+  else if(onLead) renderLead();
   else renderStep();
 }
 
@@ -841,6 +980,75 @@ function applyConfig(){
   if(UTM) document.querySelectorAll('a[href$=".html"]').forEach(a => { a.href = a.getAttribute("href") + "?" + UTM; });
   const y = document.getElementById("year");
   if(y) y.textContent = new Date().getFullYear();
+}
+
+/* hero interativo: o ponteiro inclina o disco, move a lente de leitura,
+   acende as marcas que passam sob ela e desloca os chips em profundidades
+   diferentes. Sem ponteiro (toque, teclado, reduced motion), a lente
+   continua derivando sozinha pelo CSS. */
+function initScan(){
+  const scan = document.getElementById("scan");
+  const skin = document.getElementById("skin");
+  if(!scan || !skin) return;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const marks = [...scan.querySelectorAll(".skin-mark")];
+  const chips = [...scan.querySelectorAll(".scan-chip")];
+  let raf = null, ponto = null;
+
+  const desenha = () => {
+    raf = null;
+    if(!ponto) return;
+    const r = scan.getBoundingClientRect();
+    const s = skin.getBoundingClientRect();
+
+    /* -1 a 1 a partir do centro do conjunto */
+    scan.style.setProperty("--px", ((ponto.x - (r.left + r.width/2)) / (r.width/2)).toFixed(3));
+    scan.style.setProperty("--py", ((ponto.y - (r.top + r.height/2)) / (r.height/2)).toFixed(3));
+
+    /* a lente não sai do disco: prende o ponto dentro do raio útil */
+    const cx = s.left + s.width/2, cy = s.top + s.height/2, raio = s.width/2 * 0.72;
+    let dx = ponto.x - cx, dy = ponto.y - cy;
+    const dist = Math.hypot(dx, dy);
+    if(dist > raio){ dx = dx / dist * raio; dy = dy / dist * raio; }
+    const lx = (s.width/2 + dx) / s.width * 100;
+    const ly = (s.height/2 + dy) / s.height * 100;
+    scan.style.setProperty("--lx", lx.toFixed(2) + "%");
+    scan.style.setProperty("--ly", ly.toFixed(2) + "%");
+
+    /* marcas sob a lente */
+    marks.forEach(m => {
+      const mx = parseFloat(m.style.getPropertyValue("--x")) / 100 * s.width;
+      const my = parseFloat(m.style.getPropertyValue("--y")) / 100 * s.height;
+      const perto = Math.hypot(mx - (s.width/2 + dx), my - (s.height/2 + dy)) < 52;
+      m.classList.toggle("is-read", perto);
+    });
+
+    /* chip mais próximo do ponteiro */
+    let melhor = null, menor = Infinity;
+    chips.forEach(c => {
+      const b = c.getBoundingClientRect();
+      const d = Math.hypot(ponto.x - (b.left + b.width/2), ponto.y - (b.top + b.height/2));
+      if(d < menor){ menor = d; melhor = c; }
+    });
+    chips.forEach(c => c.classList.toggle("is-near", c === melhor && menor < 220));
+  };
+
+  scan.addEventListener("pointermove", e => {
+    if(e.pointerType === "touch") return;
+    scan.classList.add("is-live");
+    ponto = {x:e.clientX, y:e.clientY};
+    if(!raf) raf = requestAnimationFrame(desenha);
+  });
+
+  scan.addEventListener("pointerleave", () => {
+    ponto = null;
+    scan.classList.remove("is-live");
+    scan.style.setProperty("--px", 0);
+    scan.style.setProperty("--py", 0);
+    marks.forEach(m => m.classList.remove("is-read"));
+    chips.forEach(c => c.classList.remove("is-near"));
+  });
 }
 
 /* animações de entrada — fade + 14px, respeitando reduced motion */
@@ -911,5 +1119,6 @@ document.addEventListener("click", e => {
 applyConfig();
 initLang();          /* já chama renderStep() e applyWhatsLinks() */
 initReveal();
+initScan();
 initHeader();
 initConsent();

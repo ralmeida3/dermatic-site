@@ -122,7 +122,7 @@ ul{margin:0;padding:0;list-style:none}
    -------------------------------------------------------------------------- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:15px 28px;border-radius:var(--radius-pill);font-size:15px;font-weight:500;
+  padding:15px 28px;border-radius:var(--radius-pill);font-size:15px;font-weight:500;white-space:nowrap;
   border:1px solid transparent;text-align:center;
   transition:background var(--t-micro) var(--ease),color var(--t-micro) var(--ease),
              border-color var(--t-micro) var(--ease),transform var(--t-micro) var(--ease);
@@ -172,7 +172,7 @@ ul{margin:0;padding:0;list-style:none}
 
 .header .btn-header{display:none}
 @media (min-width:760px){ .header .btn-header{display:inline-flex} }
-@media (min-width:900px){ .nav{display:flex} }
+@media (min-width:1060px){ .nav{display:flex} }
 
 /* --------------------------------------------------------------------------
    6. SEÇÕES E SUPERFÍCIES
@@ -233,31 +233,112 @@ section[id],#quiz,#result{scroll-margin-top:84px}
 .hero-seals li{display:flex;align-items:center;gap:8px}
 .hero-seals svg{color:var(--color-clinical)}
 
-/* visual: foto em disco de vidro + anéis de leitura + chips */
-.scan{position:relative;aspect-ratio:1;max-width:min(78vw,460px);margin:0 auto;width:100%}
-.scan-photo{
-  position:absolute;inset:12%;border-radius:50%;overflow:hidden;
-  box-shadow:var(--shadow-2);
+/* visual do hero: amostra de pele sob leitura.
+   Tudo em CSS/SVG — nenhuma foto. O conjunto reage ao ponteiro:
+   o disco inclina, o brilho acompanha a luz, a lente de leitura segue o cursor
+   e os chips deslocam em profundidades diferentes. Sem ponteiro, a lente
+   deriva sozinha, no ritmo de "glass float" do brand guide (4–8 s). */
+.scan{
+  position:relative;aspect-ratio:1;max-width:min(78vw,460px);margin:0 auto;width:100%;
+  --px:0;--py:0;      /* ponteiro normalizado, -1 a 1 */
+  --lx:50%;--ly:44%;  /* posição da lente */
 }
-.scan-photo img{width:100%;height:100%;object-fit:cover}
-.scan-photo::after{
+.scan-stage{position:absolute;inset:0;perspective:900px}
+.scan-rings{
+  position:absolute;inset:0;width:100%;height:100%;color:var(--color-clinical);
+  transform:rotateX(calc(var(--py) * -3deg)) rotateY(calc(var(--px) * 3deg));
+  transition:transform 420ms var(--ease);
+}
+.skin{
+  position:absolute;inset:14%;border-radius:50%;overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(120% 120% at 30% 24%, #FBEDE7 0%, #F3D9CE 38%, #E8B8A8 74%, #DCA491 100%);
+  box-shadow:var(--shadow-2), inset 0 0 40px rgba(220,164,145,.45);
+  transform:rotateX(calc(var(--py) * -6deg)) rotateY(calc(var(--px) * 6deg));
+  transition:transform 420ms var(--ease);
+  cursor:crosshair;
+}
+/* textura de poro, discreta */
+.skin::before{
+  content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:multiply;
+  background-image:
+    radial-gradient(rgba(198,140,121,.30) 1px, transparent 1.6px),
+    radial-gradient(rgba(198,140,121,.18) 1px, transparent 1.6px);
+  background-size:13px 13px, 21px 21px;
+  background-position:0 0, 7px 9px;
+}
+/* reflexo de vidro: branco/azul, nunca cromado */
+.skin-sheen{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(50% 42% at calc(38% + var(--px) * 14%) calc(24% + var(--py) * 12%), rgba(255,255,255,.85) 0%, rgba(255,255,255,0) 62%),
+    linear-gradient(140deg, rgba(255,255,255,.34) 0%, rgba(255,255,255,0) 44%, rgba(169,202,219,.26) 100%);
+  transition:background 300ms var(--ease);
+}
+.skin::after{
   content:"";position:absolute;inset:0;border-radius:50%;
-  background:linear-gradient(140deg,rgba(255,255,255,.42),rgba(255,255,255,0) 46%,rgba(169,202,219,.2));
-  border:1px solid rgba(255,255,255,.75);
+  border:1px solid rgba(255,255,255,.8);pointer-events:none;
 }
-.scan-rings{position:absolute;inset:0;width:100%;height:100%;color:var(--color-clinical)}
+/* marcas na pele — acendem quando a lente passa por cima */
+.skin-mark{
+  position:absolute;left:var(--x);top:var(--y);width:5px;height:5px;border-radius:50%;
+  background:rgba(140,92,76,.42);transform:translate(-50%,-50%);pointer-events:none;
+  transition:background var(--t-micro) var(--ease),box-shadow var(--t-micro) var(--ease),transform var(--t-micro) var(--ease);
+}
+.skin-mark.is-read{
+  background:var(--color-graphite);transform:translate(-50%,-50%) scale(1.5);
+  box-shadow:0 0 0 4px rgba(255,255,255,.55);
+}
+/* lente de leitura */
+.skin-lens{
+  position:absolute;left:var(--lx);top:var(--ly);width:104px;height:104px;margin:-52px 0 0 -52px;
+  border-radius:50%;pointer-events:none;
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 6px 24px rgba(23,39,47,.16), inset 0 0 22px rgba(255,255,255,.5);
+  background:radial-gradient(circle at 38% 32%, rgba(255,255,255,.5) 0%, rgba(255,255,255,.08) 55%, rgba(255,255,255,0) 70%);
+  backdrop-filter:brightness(1.06) saturate(1.12) contrast(1.06);
+  -webkit-backdrop-filter:brightness(1.06) saturate(1.12) contrast(1.06);
+  transition:left 220ms var(--ease),top 220ms var(--ease),width 220ms var(--ease),height 220ms var(--ease);
+}
+.skin-lens i{
+  position:absolute;inset:14px;border-radius:50%;
+  border:1px dashed rgba(23,39,47,.22);
+}
+.skin-lens i::before,.skin-lens i::after{
+  content:"";position:absolute;background:rgba(23,39,47,.22);
+}
+.skin-lens i::before{left:50%;top:-8px;width:1px;height:16px;transform:translateX(-50%)}
+.skin-lens i::after{top:50%;left:-8px;height:1px;width:16px;transform:translateY(-50%)}
+.scan.is-live .skin-lens{transition:left 90ms linear,top 90ms linear}
+.scan:not(.is-live) .skin-lens{animation:drift 7s var(--ease) infinite}
+@keyframes drift{
+  0%,100%{left:44%;top:38%}
+  25%{left:62%;top:52%}
+  50%{left:52%;top:66%}
+  75%{left:36%;top:54%}
+}
+
 .scan-chip{
   position:absolute;display:flex;align-items:center;gap:8px;white-space:nowrap;
-  background:rgba(255,255,255,.92);border:1px solid var(--color-line);
+  background:rgba(255,255,255,.94);border:1px solid var(--color-line);
   border-radius:var(--radius-pill);padding:8px 14px;font-size:12.5px;
   box-shadow:var(--shadow-1);backdrop-filter:blur(10px);
+  transform:translate3d(calc(var(--px) * var(--depth,16) * 1px), calc(var(--py) * var(--depth,16) * 1px), 0);
+  transition:transform 380ms var(--ease),border-color var(--t-micro) var(--ease);
 }
 .scan-chip b{font-weight:600;font-size:12.5px}
 .scan-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--color-clinical);flex:none}
-.scan-chip--1{top:12%;left:-4%}
+.scan-chip--1{top:10%;left:-4%}
 .scan-chip--2{top:46%;right:-6%}
 .scan-chip--3{bottom:12%;left:2%}
-@media (max-width:520px){ .scan-chip{font-size:11.5px;padding:6px 11px} }
+.scan-chip.is-near{border-color:var(--color-graphite)}
+.scan-chip.is-near .dot{background:var(--color-graphite)}
+@media (max-width:520px){ .scan-chip{font-size:11.5px;padding:6px 11px} .skin-lens{width:80px;height:80px;margin:-40px 0 0 -40px} }
+
+@media (prefers-reduced-motion:reduce){
+  .skin,.scan-rings,.scan-chip{transform:none}
+  .scan:not(.is-live) .skin-lens{animation:none}
+}
 
 /* faixa de números honestos (sem métrica inventada) */
 .facts{border-top:1px solid var(--color-line);border-bottom:1px solid var(--color-line);background:var(--color-white)}
@@ -339,6 +420,36 @@ section[id],#quiz,#result{scroll-margin-top:84px}
 .quiz-back{font-size:14px;color:var(--color-cool);padding:10px 4px}
 .quiz-back:hover{color:var(--color-graphite)}
 .quiz-foot{padding:var(--space-4) var(--space-5);border-top:1px solid var(--color-line);background:var(--color-ice);font-size:13px;color:var(--color-cool)}
+
+/* passo de contato — antes do resultado */
+.lead{display:grid;gap:var(--space-4)}
+@media (min-width:640px){ .lead .row-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)} }
+.field label{display:block;font-size:13px;font-weight:500;margin-bottom:8px}
+.field label span{color:var(--color-cool);font-weight:400}
+.field input{
+  width:100%;padding:14px 16px;border:1px solid var(--color-line);border-radius:var(--radius-input);
+  background:var(--color-white);transition:border-color var(--t-micro) var(--ease);
+}
+.field input:hover{border-color:var(--color-line-strong)}
+.field input:focus{outline:2px solid var(--color-clinical);outline-offset:0;border-color:var(--color-clinical)}
+.field input[aria-invalid="true"]{border-color:#B4604A}
+.field .err{display:none;margin-top:6px;font-size:13px;color:#8F4634}
+.field.is-bad .err{display:block}
+.field label.consent-line{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--color-text-soft);line-height:1.5}
+.consent-line input{
+  appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;margin-top:1px;
+  border:1px solid var(--color-line-strong);border-radius:6px;background:var(--color-white);
+  display:grid;place-items:center;cursor:pointer;transition:background var(--t-micro) var(--ease),border-color var(--t-micro) var(--ease);
+}
+.consent-line input::after{
+  content:"";width:10px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-45deg) translateY(-1px);opacity:0;transition:opacity var(--t-micro) var(--ease);
+}
+.consent-line input:checked{background:var(--color-graphite);border-color:var(--color-graphite)}
+.consent-line input:checked::after{opacity:1}
+.consent-line input:focus-visible{outline:2px solid var(--color-graphite);outline-offset:3px}
+.consent-line a{text-decoration:underline;text-underline-offset:2px}
+.lead-note{font-size:13px;color:var(--color-cool)}
 
 /* estado "analisando" */
 .thinking{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-4);padding:var(--space-7) 0}
