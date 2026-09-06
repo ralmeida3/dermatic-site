@@ -16,7 +16,7 @@ Tudo está centralizado no topo de **`assets/js/main.js`**, no objeto `CONFIG`:
 ```js
 const CONFIG = {
   whatsapp: "5500000000000",                      // 55 + DDD + número, só dígitos
-  facebook: "https://www.facebook.com/PREENCHER", // página oficial
+  facebook: "https://www.facebook.com/profile.php?id=61594012530244",  // já preenchido
   instagram: "",                                  // opcional
   tiktok: "",                                     // opcional
   email: "contato@dermatic.com.br",
@@ -38,9 +38,9 @@ e para o robô de busca. Faça uma substituição de `dermatic.com.br` pelo dom�
 
 > Atenção: `dermatic.net` está registrado por terceiro. Confirme o domínio antes de publicar.
 
-**Facebook.** O endereço da página aparece também no JSON-LD (`sameAs`) e nos links do rodapé
-do HTML. O JavaScript sobrescreve os links pelo valor de `CONFIG.facebook`; ajuste o JSON-LD
-manualmente, porque ele é lido pelo Google antes do JavaScript rodar.
+**Facebook.** Já está preenchido em três lugares: `CONFIG.facebook`, os links do rodapé e o
+`sameAs` do JSON-LD. Se a página mudar de endereço, troque no `CONFIG` **e** no JSON-LD do
+`index.html` — esse último é lido pelo Google antes do JavaScript rodar.
 
 ---
 
@@ -194,7 +194,7 @@ brew install webp && cwebp -q 82 assets/logo/wordmark.png -o assets/logo/wordmar
 
 ## 9. Pendências que dependem de decisão sua
 
-- [ ] Número do WhatsApp, URL do Facebook, e-mail de contato e domínio final
+- [ ] Número do WhatsApp, e-mail de contato e domínio final (Facebook já está ligado)
 - [ ] Meta Pixel ID, se quiser medir origem das visitas (sem ele, o banner de cookies nem aparece)
 - [ ] `leadEndpoint`: para onde o contato do fim da análise deve ir (Formspree, CRM, automação)
 - [ ] Decidir, com apoio jurídico, se as respostas do quiz vão junto do contato (`sendAnswers`)

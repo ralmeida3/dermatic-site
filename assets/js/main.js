@@ -19,7 +19,7 @@
 const CONFIG = {
   /* Número no formato internacional, só dígitos: 55 + DDD + número */
   whatsapp: "5500000000000",                       /* [PREENCHER] */
-  facebook: "https://www.facebook.com/PREENCHER",  /* [PREENCHER] */
+  facebook: "https://www.facebook.com/profile.php?id=61594012530244",
   instagram: "",                                   /* [PREENCHER] ou deixe vazio */
   tiktok: "",                                      /* [PREENCHER] ou deixe vazio */
   email: "contato@dermatic.com.br",                /* [PREENCHER] */
