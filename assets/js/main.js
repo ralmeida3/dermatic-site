@@ -134,6 +134,7 @@ const I18N = {
     "footer.privacy":"Política de privacidade","footer.terms":"Termos de uso",
     "footer.disclaimer":"<strong>Aviso médico.</strong> A Dermatic oferece recomendações de cuidados cosméticos e produtos de venda livre. Não realiza diagnóstico, não substitui avaliação médica e não trata doenças de pele. Em caso de lesão, dor, alteração súbita ou piora, procure um dermatologista.",
     "footer.tagline":"Sua pele, decodificada.",
+    "footer.company":"Dermatic é uma marca de RA NE Comércio de Moda LTDA — CNPJ 66.875.992/0001-09 · Avenida República do Líbano, 251, Loja 237 — Pina, Recife/PE, 51110-160",
     "consent.text":"Usamos cookies de medição para entender de onde vêm as visitas. Nada é carregado antes de você aceitar.",
     "consent.yes":"Aceitar","consent.no":"Recusar",
     /* resultado */
@@ -245,6 +246,7 @@ const I18N = {
     "footer.privacy":"Privacy policy","footer.terms":"Terms of use",
     "footer.disclaimer":"<strong>Medical notice.</strong> Dermatic offers cosmetic and over-the-counter skincare guidance. It does not diagnose, does not replace medical assessment and does not treat skin disease. In case of a lesion, pain, sudden change or worsening, see a dermatologist.",
     "footer.tagline":"Your skin, decoded.",
+    "footer.company":"Dermatic is a brand of RA NE Comércio de Moda LTDA — Brazilian company registry (CNPJ) 66.875.992/0001-09 · Avenida República do Líbano, 251, Loja 237 — Pina, Recife/PE, 51110-160, Brazil",
     "consent.text":"We use measurement cookies to understand where visits come from. Nothing loads before you accept.",
     "consent.yes":"Accept","consent.no":"Decline",
     "res.eyebrow":"Your analysis","res.redo":"Redo analysis",
